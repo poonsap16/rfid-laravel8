@@ -9,12 +9,7 @@
 </style>
 
 <div class="push-top">
-  @if(session()->get('success'))
-    <div class="alert alert-success">
-      {{ session()->get('success') }}  
-    </div><br />
-  @endif
-  <table class="table">
+    <table class="table">
     <thead>
         <tr class="table-warning">
             <td>branch</td>
@@ -35,7 +30,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($student as $students)
+        @foreach($students as $student)
         <tr>
             <td>{{$students->branch}}</td>
             <td>{{$students->prefix}}</td>
