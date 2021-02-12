@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('students', StudentController::class);
-// Route::get('/students', [StudentController::class, 'index']);
 
-// Route::get('/students', function () {
-//     return view('students.index');
-// });
+Route::resource('tasks', TaskController::class);
+
+
