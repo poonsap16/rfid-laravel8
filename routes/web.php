@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TimesheetController;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +25,7 @@ Route::resource('students', StudentController::class);
 
 Route::resource('tasks', TaskController::class);
 
+Route::resource('timesheets', TimesheetController::class);
 
+Route::resource('file_uploads', UploadController::class);
+Route::post('upload',[UploadController::class, 'upload'])->name('upload');
