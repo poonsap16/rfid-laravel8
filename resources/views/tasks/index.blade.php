@@ -1,69 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Task</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
-	</head>
-<body>
-	<div class="container mt-2">
-		<div class="row">
-			<div class="col-lg-12 margin-tb">
-				<div class="pull-left">
-					<h2>Task</h2>
-				</div>
-				<div class="pull-right mb-2">
-					<a class="btn btn-success" href="{{ route('tasks.create') }}"> Create Task</a>
-				</div>
+@extends('layouts.layout')
+
+@section('title', 'Activity List')
+
+@section('content')
+
+<div class="container mt-3">
+	<div class="row">
+		<div class="col-lg-12 margin-tb">
+			<div class="pull-left">
+				<h2>รายการกิจกรรมวิชาการ</h2>
+				<hr>
+			</div>
+			<div class="pull-right mb-2">
+				<a class="btn btn-success" href="{{ route('tasks.create') }}"> Create Task</a>
 			</div>
 		</div>
+		
 
-	@if ($message = Session::get('success'))
+
+@if($message = Session::get('success'))
 	<div class="alert alert-success">
 		<p>{{ $message }}</p>
 	</div>
-	@endif
-	<table class="table table-bordered">
-	<tr>
+@endif
 
-	        <th>activity_id</th>
-	        <th>activity_name</th>
-	        <th>activity_acronym</th>
-	        <th>bigin_time</th>
-	        <th>end_time</th>
-	        <th>bigin_time_before</th>
-	        <th>end_time_late</th>
-	        <th>job_id</th>
-	        <th>job_type</th>
-	        <th>person_type</th>
-	        <th>work_hour</th>
-
-			<th width="280px">Action</th>
-	</tr>
+<div class="table-responsive">
+  <table class="table">
+  <thead class="table-dark">
+      	<tr>
+			<th scope="col">รหัสกิจกรรม</th >
+			<th scope="col">ชื่อกิจกรรม</th >
+			<th scope="col">ชื่อย่อกิจกรรม</th >
+			<th scope="col">Action</th >
+      	</tr>
+    </thead>
+	<tbody>
 	@foreach ($tasks as $task)
-		<tr>
-		    <td>{{ $task->activity_id }}</td>
-		    <td>{{ $task->activity_name }}</td>
-		    <td>{{ $task->activity_acronym }}</td>
-		    <td>{{ $task->bigin_time }}</td>
-		    <td>{{ $task->end_time }}</td>
-		    <td>{{ $task->bigin_time_before }}</td>
-		    <td>{{ $task->end_time_late }}</td>
-		    <td>{{ $task->job_id }}</td>
-		    <td>{{ $task->job_type }}</td>
-		    <td>{{ $task->person_type }}</td>
-		    <td>{{ $task->work_hour }}</td>
-			<td>
-				<form action="{{ route('tasks.destroy',$task->id) }}" method="Post">
-					<a class="btn btn-primary" href="{{ route('tasks.edit',$task->id) }}">Edit</a>
-					@csrf
-					@method('DELETE')
-					<button type="submit" class="btn btn-danger">Delete</button>
-				</form>
-			</td>
-		</tr>
-	@endforeach
-	</table>
-	{!! $tasks->links() !!}
-</body>
-</html>
+      	<tr>
+        	<td>{{$task->activity_id}}</td>
+        	<td>{{$task->activity_name}}</td>
+        	<td>{{$task->activity_acronym}}</td>
+        	<td class="text-center">
+                <a href="{{ route('tasks.edit', $task->activity_id)}}" class="btn btn-primary btn-sm">Edit</a>
+                <form action="{{ route('tasks.destroy', $task->activity_id) }}" method="post" style="display: inline-block">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                </form>
+            </td>
+      	</tr>
+	 @endforeach
+    </tbody>
+  </table>
+</div>
+</div>
+@endsection

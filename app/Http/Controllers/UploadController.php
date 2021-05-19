@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 use App\Models\File_upload;
 use App\Models\Timesheet;
+use App\Imports\TimesheetsImport;
 
 class UploadController extends Controller
 {
@@ -39,6 +40,8 @@ class UploadController extends Controller
             $filename = pathinfo($path);
             $fileModel->file = $filename['basename'];
             $fileModel->save(); // save() ไม่ใช่ save
+
+            //return Excel::import(new Timesheet, request()->file('file'));
 
             return back()
                     ->with('success','File has been uploaded.')

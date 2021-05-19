@@ -16,20 +16,20 @@ class TimesheetsImport implements ToCollection
     */
     public function collection(Collection $collection)
     {
-        \Log::info($collection);
-        \Log::info($collection->toArray());
-        Validator::make($collection->toArray(),[
-            '*.num' => 'required',
-            '*.card_num' => 'required',
-            '*.sap_id' => 'required',
-            '*.full_name' => 'required',
-            '*.date_stamp' => 'required',
-            '*.time_stamp' => 'required',
-            '*.rfid_position' => 'required',
-            '*.rfid_status' => 'required',
-            '*.rfid_door' => 'required'
-        ])->validate();
-
+        // \Log::info($collection);
+        // \Log::info($collection->toArray());
+        // Validator::make($collection->toArray(),[
+        //     '*.num' => 'required',
+        //     '*.card_num' => 'required',
+        //     '*.sap_id' => 'required',
+        //     '*.full_name' => 'required',
+        //     '*.date_stamp' => 'required',
+        //     '*.time_stamp' => 'required',
+        //     '*.rfid_position' => 'required',
+        //     '*.rfid_status' => 'required',
+        //     '*.rfid_door' => 'required'
+        // ])->validate();
+        
         foreach($collection as $row)
         {
             Timesheet::create([

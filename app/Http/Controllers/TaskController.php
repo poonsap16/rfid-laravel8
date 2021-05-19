@@ -14,8 +14,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $data['tasks'] = Task::orderBy('id','desc')->paginate(5);
-        return view('tasks.index', $data);
+        // $data['tasks'] = Task::orderBy('id','desc')->paginate(5);
+        // return view('tasks.index', $data);
+        $tasks = Task::all();
+        return view('tasks.index', compact('tasks', $tasks));
     }
 
     /**
@@ -36,35 +38,37 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+    
         $request->validate([
         'activity_id' => 'required',
         'activity_name' => 'required',
         'activity_acronym' => 'required',
-        'bigin_time' => 'required',
+        'begin_time' => 'required',
         'end_time' => 'required',
-        'bigin_time_before' => 'required',
+        'begin_time_before' => 'required',
         'end_time_late' => 'required',
         'job_id' => 'required',
         'job_type' => 'required',
         'person_type' => 'required',
         'work_hour' => 'required'
         ]);
+            
+        $task = Task::create([
+        $task->activity_id = $request->activity_id,
+        $task->activity_name = $request->activity_name,
+        $task->activity_acronym = $request->activity_acronym,
+        $task->begin_time = $request->bigin_time,
+        $task->end_time = $request->end_time,
+        $task->begin_time_before = $request->bigin_time_before,
+        $task->end_time_late = $request->end_time_late,
+        $task->job_id = $request->job_id,
+        $task->job_type = $request->job_type,
+        $task->person_type = $request->person_type,
+        $task->work_hour = $request->work_hour
 
-        $task = new Task;
-        $task->activity_id = $request->activity_id;
-        $task->activity_name = $request->activity_name;
-        $task->activity_acronym = $request->activity_acronym;
-        $task->bigin_time = $request->bigin_time;
-        $task->end_time = $request->end_time;
-        $task->bigin_time_before = $request->bigin_time_before;
-        $task->end_time_late = $request->end_time_late;
-        $task->job_id = $request->job_id;
-        $task->job_type = $request->job_type;
-        $task->person_type = $request->person_type;
-        $task->work_hour = $request->work_hour;
-
-        $task->save();
-        return redirect()->route('tasks.index')->with('success','Company has been created successfully.');
+        // $task->save();
+        ]);
+        return redirect('tasks.index')->with('success','Company has been created successfully.');
     }
 
     /**
