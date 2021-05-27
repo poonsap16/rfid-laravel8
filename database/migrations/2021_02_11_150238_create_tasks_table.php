@@ -18,10 +18,10 @@ class CreateTasksTable extends Migration
             $table->integer('activity_id');
             $table->string('activity_name');
             $table->string('activity_acronym');
-            $table->datetime('begin_time');
-            $table->datetime('end_time');
-            $table->datetime('begin_time_before');
-            $table->datetime('end_time_late');
+            $table->time('begin_time');
+            $table->time('end_time');
+            $table->time('begin_time_before');
+            $table->time('end_time_late');
             $table->string('job_id');
             $table->string('job_type');
             $table->string('person_type');

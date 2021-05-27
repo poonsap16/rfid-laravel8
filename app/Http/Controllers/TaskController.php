@@ -16,8 +16,10 @@ class TaskController extends Controller
     {
         // $data['tasks'] = Task::orderBy('id','desc')->paginate(5);
         // return view('tasks.index', $data);
-        $tasks = Task::all();
-        return view('tasks.index', compact('tasks', $tasks));
+        $tasks = Task::latest()->paginate(5);
+        return view('tasks.index', compact('tasks', $tasks))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
+        
     }
 
     /**
@@ -88,7 +90,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($task)
     {
         return view('tasks.edit',compact('task'));
     }

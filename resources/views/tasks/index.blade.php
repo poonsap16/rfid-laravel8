@@ -12,7 +12,7 @@
 				<hr>
 			</div>
 			<div class="pull-right mb-2">
-				<a class="btn btn-success" href="{{ route('tasks.create') }}"> Create Task</a>
+				<a class="btn btn-success" href="{{ route('tasks.create') }}">เพิ่มกิจกรรมใหม่</a>
 			</div>
 		</div>
 		
@@ -52,6 +52,7 @@
 	 @endforeach
     </tbody>
   </table>
+  {!! $tasks->links() !!}
 </div>
 </div>
 @endsection
