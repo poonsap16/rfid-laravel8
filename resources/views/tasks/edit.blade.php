@@ -20,7 +20,7 @@
         </div>
     @endif
   
-    <form action="" method="POST">
+    <form action="{{ route('tasks.update',$task->activity_id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">

@@ -1,12 +1,29 @@
-@extends('layouts.layout')
-
-@section('title', 'Activity Create')
-
+@extends('jobs.layout')
+@section('title', 'Activity Add')
 @section('content')
-    <h2>Add New Activity</h2>
-    <hr>
 
-    <form action="{{ route('tasks.store') }}" method="post">
+<div class="container">
+    <div class="row" mt-5>
+        <div class="col-md-12">
+            <h2>Add new activity</h2>
+            <a href="{{ route('jobs.index') }}" class="btn btn-primary my-3">back</a>
+        </div>
+    </div>
+</div>
+    
+@if( $errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoop</strong>
+        There were some problems with your input. <br><br>
+        <ul>
+            @foreach( $errors->all() as $error)
+                <li> {{ $error }}</li>
+            @endforeach
+        </ul> 
+    </div>
+@endif
+
+<form action="{{ route('jobs.store') }}" method="post">
     @csrf
         <div class="form-group">
             <label for="activity_id">รหัสกิจกรรม</label>
@@ -22,7 +39,7 @@
         </div>
         <div class="form-group">
             <label for="begin_time">เวลาเริ่ม</label>
-            <input type="text" class="form-control" id="begin" name="begin">
+            <input type="text" class="form-control" id="begin_time" name="begin_time">
         </div>
         <div class="form-group">
             <label for="end_time">เวลาสิ้นสุด</label>
@@ -52,16 +69,8 @@
             <label for="work_hour">จำนวนชั่วโมง</label>
             <input type="text" class="form-control" id="work_hour" name="work_hour">
         </div>
-        <button type="submit" class="btn btn-block btn-success">Create Task</button>
+        <button type="submit" class="btn btn-block btn-success my-3">Save</button>
     </form>
 
-    @if($errors->any())
-            <div class="alert alert danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-    @endif
+
 @endsection
