@@ -41,7 +41,6 @@
             </td>
       	</tr>
         @endforeach
-
     </table>
     {!! $data->links() !!}
 </div>

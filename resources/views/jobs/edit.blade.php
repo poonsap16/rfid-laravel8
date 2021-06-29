@@ -28,7 +28,7 @@
     @method('PUT')
         <div class="form-group">
             <label for="activity_id">รหัสกิจกรรม</label>
-            <input type="text" class="form-control" id="activity_id" name="activity_id" value="{{ $job->activity_id}}">
+            <input type="text" id="activity_id" name="activity_id" value="{{ $job->activity_id}}">
         </div>
         <div class="form-group">
             <label for="activity_name">ชื่อกิจกรรม</label>
