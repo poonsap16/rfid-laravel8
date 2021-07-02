@@ -79,7 +79,6 @@
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <a href="{{ route('jobs.index') }}" class="btn btn-primary btn-sm" type="backup">Back</a>
-        <a href="{{ route('jobs.edit', $job->id)}}" class="btn btn-secondary btn-sm">Edit</a>
     </div>
 </div>
 @endsection
